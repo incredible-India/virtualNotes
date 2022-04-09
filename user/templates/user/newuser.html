@@ -1,0 +1,71 @@
+{% extends 'core/base.html' %}
+
+{% load static %}
+{% block title %}
+
+<title>
+    New User
+</title>
+{% endblock title %}
+
+{% block content %}
+
+{% include 'core/nav.html' with o1='Home' o1l='/' o2='login' o2l='/user/login/'  o3='about' o4='services' %}
+
+<div class="container-mt-3">
+
+    <form action="" class='container mt-3'>
+
+        <div class="row">
+            <div class="col-sm-6">
+                <label for="fname" >First Name</label>
+                <input type="text" name="fname" class="form-control mt-2" id='fname'>
+                <label for="email" >Email</label>
+                <input type="email" name="email" class="form-control mt-2" id='email'>
+                <label for="password" >Password</label>
+                <input type="password" name="password" class="form-control mt-2" id='password'>
+
+                <div class="container mt-3">
+                    <input type="submit" class="btn btn-outline-success mt-1" value='Submit'>
+                
+                 
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <label for="lname"  >Last Name</label>
+                <input type="text" name="lname" class="form-control mt-2" id='lname'>
+                <label for="image"  >Image</label>
+                <input type="file" name="image" class="form-control mt-2" id='image'>
+                <label for="cnfpassword" >Confirm Password</label>
+                <input type="password" name="cnfpassword" class="form-control mt-2" id='cnfpassword'>
+           <div class="container mt-3">
+            <a href="/user/login/" class="text-primary mt-3">Already Have Account</a>
+           </div>
+            </div>
+        </div>
+
+    </form>
+
+</div>
+
+
+<div class="container mt-3">
+    <div class="row">
+        <div class="col-sm-6">
+            <img src="{% static 'user/img/animal.jpg' %}" alt="" class='img-fluid'>
+        </div>
+
+        <div class="col-sm-6">
+            <p class="text-dark mt-3">
+                <b>
+                    Birds suffer from the loss of habitats and other factors that affect their migration and reproduction patterns, leading to a decline in their numbers and even driving some to extinction. In order to protect and reduce the death of birds, there are various actions people can take to conserve birds and to at least give them a chance to survive.
+
+The most appropriate and necessary actions can solve this problem on two fronts. Foremost is protecting the birds and their numbers and secondly is protecting their habitats. With enough people and diligence of implementation, we might even be able to reverse the current dwindling population of birds and get those that are endangered off the list. Here are the top 25 simple and amazing ways to conserve and protect birds.
+
+
+                </b>
+            </p>
+        </div>
+    </div>
+</div>
+{% endblock content %}
