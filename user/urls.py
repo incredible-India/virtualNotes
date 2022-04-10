@@ -6,5 +6,6 @@ from user import urls
 urlpatterns = [
  
     path('newUser/',uv.newUser,name='newusers'),
-    path('login/',uv.login,name='login')
+    path('login/',uv.login,name='login'),
+    path('logout/',uv.logout,name='logiout')
 ]

@@ -14,16 +14,16 @@
 
 <div class="container-mt-3">
 
-    <form action="" class='container mt-3'>
-
+    <form action="" class='container mt-3' method='POST' enctype='multipart/form-data'>
+        {% csrf_token %}
         <div class="row">
             <div class="col-sm-6">
-                <label for="fname" >First Name</label>
-                <input type="text" name="fname" class="form-control mt-2" id='fname'>
-                <label for="email" >Email</label>
-                <input type="email" name="email" class="form-control mt-2" id='email'>
-                <label for="password" >Password</label>
-                <input type="password" name="password" class="form-control mt-2" id='password'>
+                <label for="fname" > <span class="text-danger">*</span> First Name</label>
+                <input type="text" name="fname" class="form-control mt-2" id='fname' required>
+                <label for="email" > <span class="text-danger">*</span> Email</label>
+                <input type="email" name="email" class="form-control mt-2" id='email' required>
+                <label for="password" > <span class="text-danger">*</span> Password</label>
+                <input type="password" name="password" class="form-control mt-2" id='password' required>
 
                 <div class="container mt-3">
                     <input type="submit" class="btn btn-outline-success mt-1" value='Submit'>
@@ -32,12 +32,12 @@
                 </div>
             </div>
             <div class="col-sm-6">
-                <label for="lname"  >Last Name</label>
-                <input type="text" name="lname" class="form-control mt-2" id='lname'>
-                <label for="image"  >Image</label>
-                <input type="file" name="image" class="form-control mt-2" id='image'>
-                <label for="cnfpassword" >Confirm Password</label>
-                <input type="password" name="cnfpassword" class="form-control mt-2" id='cnfpassword'>
+                <label for="lname"  > <span class="text-danger">*</span> Last Name</label>
+                <input type="text" name="lname" class="form-control mt-2" id='lname' required>
+                <label for="image"  > <span class="text-danger">*</span> Image</label>
+                <input type="file" name="image" class="form-control mt-2" id='image' required>
+                <label for="cnfpassword" > <span class="text-danger">*</span> Confirm Password</label>
+                <input type="password" name="cnfpassword" class="form-control mt-2" id='cnfpassword' required>
            <div class="container mt-3">
             <a href="/user/login/" class="text-primary mt-3">Already Have Account</a>
            </div>
@@ -48,6 +48,27 @@
 
 </div>
 
+{% if messages %}
+{% for k in messages %} 
+
+<div class="alert alert-danger alert-dismissible fade show mt-2 container" role="alert">
+    <strong>{{k}}</strong> You should check in on some of those fields below.
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+
+
+{% endfor %}
+{% endif %}
+
+<div class="container mt-3">
+
+    <p class="text-dark">
+        <b>
+            <span class="text-danger">* </span> : All the fields are important
+        </b>
+    </p>
+
+</div>
 
 <div class="container mt-3">
     <div class="row">

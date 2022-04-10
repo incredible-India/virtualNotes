@@ -1,0 +1,14 @@
+
+
+for this error - 'MultiValueDict' object is not callable
+
+profile.picture = request.FILES('profilepic')
+
+should be like this:
+profile.picture = request.FILES['profilepic']
+because your are calling a dict value.
+
+
+#Super user
+rishabh username
+rishabh password

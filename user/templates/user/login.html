@@ -16,19 +16,21 @@
 
     <div class="row">
         <div class="col-sm-6">
-            <form action="" class='container mt-3'>
+            <form action="" class='container mt-3' method='POST'>
+
+                {% csrf_token %}
 
        
                 <div class="container text-center mt-2">
         
                     <label for="email">Email</label>
-                    <input type="email" name='email' id='email' class='form-control'>
+                    <input type="email" name='email' id='email' class='form-control' required>
                 </div>
           
                 <div class="container text-center mt-2">
         
                     <label for="password">Password</label>
-                    <input type="password" name='password' id='password' class='form-control'>
+                    <input type="password" name='password' id='password' class='form-control' required>
                 </div>
         
                   
@@ -39,7 +41,24 @@
              
                 </div>
             </form>
+
+            
+        <div class="container mt-3">
+            {% if messages %}
+{% for k in messages %} 
+
+<div class="alert alert-danger alert-dismissible fade show mt-2 container" role="alert">
+    <strong>{{k}}</strong> You should check in on some of those fields above.
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+
+
+{% endfor %}
+{% endif %}
+
         </div>
+        </div>
+
 
         <div class="col-sm-6 mt-2">
             <img src="{% static 'user/img/lab.jpg' %}" alt="" class='img-fluid'>
