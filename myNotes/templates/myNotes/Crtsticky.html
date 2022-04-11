@@ -1,0 +1,49 @@
+{% extends 'core/base.html' %}
+{% load static %}
+{% block title %}
+<title>Sticky Notes</title>
+
+{% endblock title %}
+
+{% block content %}
+{% include 'core/nav.html' with o1='Home' o1l='/' o2='Profile' o2l='/mynotes/profile/' o3='My Notes' o4='logout' ac3='active' o4l='user/logout' uname=uname %}
+
+
+<div class="container mt-3">
+
+    <div class="row">
+
+        <div class="col-sm-4">
+            <img src="{% static 'myNotes/img/tadap.jpg' %}" alt="">
+        </div>
+
+        <div class="col-sm-8">
+            <h5 class="text-success"> <i class="fa-solid fa-note-sticky"></i> Sticky Notes</h5>
+
+            <form action="" method='POST'>
+                {% csrf_token %}
+                <textarea name="notes" id="notes" cols="30" rows="10" class="form-control" ></textarea>
+
+                <input type="submit" value="Submit" class='btn btn-success mt-3'>
+        
+                <p id='speack' class='mt-3'><i class="fa-solid fa-volume-high"></i> Speak Mode is On</p>
+                
+            </form>
+
+
+            <div class="container alert alert-warning mt-3">
+                voice Method will execute only in Google Chrome browser.
+            </div>
+
+        </div>
+    </div>
+</div>
+
+{% endblock content %}
+
+{% block script %}
+
+
+<script src="{% static 'myNotes/js/CrtSticky.js' %}"></script>
+
+{% endblock script %}

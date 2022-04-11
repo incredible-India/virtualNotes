@@ -9,4 +9,4 @@ class User(models.Model):
     email = models.EmailField(max_length=50,null=False)
   
     password = models.CharField(max_length=50,null=False)
-    image = models.ImageField(upload_to='./static/Faculty/img')
+    image = models.ImageField(upload_to='images/')

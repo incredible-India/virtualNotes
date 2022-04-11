@@ -1,0 +1,44 @@
+{% extends 'core/base.html' %}
+{% load static %}
+{% block title %}
+<title>Profile - Virtual Notes</title>
+{% endblock title %}
+
+
+{% block content %}
+
+
+{% include 'core/nav.html' with o1='Home' o1l='/' o2='Profile' o2l='/mynotes/profile/' o3='Sticky Notes' o4='logout' ac2='active' o4l='/user/logout/' uname=uname %}
+
+<div class="container mt-3">
+
+    <div class="row">
+
+        <div class="col-sm-4 " style="background:#333; height:100vh;">
+
+            <h4 class="text-white text-center mt-2 bg-success">{{uname}} {{lname}}</h4>
+            <hr class="text-info">
+            <h5 class="text-white text-center">{{email}}</h5>
+
+            <hr>
+            <img src="{{userimage.url}}"  class='img-fluid'>
+            <hr class="bg-dark">
+            <a href="" class="btn btn-outline-warning text-center mt-3"> <i class="fa-solid fa-pen"></i> Edit Information</a>
+
+        </div>
+
+
+        <div class="col-sm-8">
+
+            <a href="{% url 'stickyNotes' %}" class="btn btn-outline-secondary"><i class="fa-solid fa-note-sticky"></i> Create Sticky Notes</a>
+            <a href="" class="btn btn-outline-primary"><i class="fa-solid fa-book"></i> Create Categories</a>
+
+            <hr class="text-info">
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock content %}

@@ -25,6 +25,7 @@ class verification:
             request.email = email
             userName =  models.User.objects.get(email=request.email)
             request.name =  userName.fname
+            request.lname = userName.lname
        
         
         response = self.get_response(request)    
