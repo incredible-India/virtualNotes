@@ -23,6 +23,8 @@ class verification:
         else:
             request.isverified = True
             request.email = email
+            userName =  models.User.objects.get(email=request.email)
+            request.name =  userName.fname
        
         
         response = self.get_response(request)    

@@ -4,7 +4,17 @@
 {% load static %}
 
 {% block content %}
-{% include 'core/nav.html' with o1='Home' o1l='/' o2='New User' o2l='user/newUser' o3='Profile' o4='logout' ac1='active' o4l='user/logout' %}
+
+{% if login %}
+
+{% include 'core/nav.html' with o1='Home' o1l='/' o2='Profile' o2l='/' o3='My Notes' o4='logout' ac1='active' o4l='user/logout' uname=uname %}
+
+{% else %}
+
+{% include 'core/nav.html' with o1='Home' o1l='/' o2='New User' o2l='user/newUser' o3='Log in' o4='About' ac1='active' o3l='user/login'  uname='User' %}
+
+{% endif %}
+
 
  
 <div class="container mt-2">
