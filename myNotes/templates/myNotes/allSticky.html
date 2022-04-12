@@ -1,0 +1,128 @@
+{% extends 'core/base.html' %}
+{% load static %}
+{% block title %}
+
+<title>All Notes</title>
+
+{% endblock title %}
+
+{% block link %}
+
+<link rel="stylesheet" href="{% static 'myNotes/css/sticky.css' %}">
+
+{% endblock link %}
+
+
+
+{% block content %}
+
+{% include 'core/nav.html' with o1='Home' o1l='/' o2='Profile' o2l='/mynotes/profile/' o3='My Notes' ac3='active' o3l='/mynotes/crt/sticky/notes/' o4='logout' o4l='/user/logout/' uname=uname %}
+
+<div class="container mt-3">
+
+    {% if data %}
+
+
+    <div class="container mt-3">
+
+        <a href="{% url 'allStickyNotesDeleted' %}" class="btn btn-outline-danger"><i class="fa-solid fa-trash-can"></i> Delete All Notes</a>
+        <a href="/mynotes/crt/sticky/notes/" class="btn btn-outline-success"><i class="fa-solid fa-note-sticky"></i> Create Notes</a>
+        <a href="{% url 'spksnts' %}" class="btn btn-outline-info"><i class="fa-solid fa-volume-high"></i> Listen Notes in Audio</a>
+
+    </div>
+<hr class="text-info">
+    <ul>
+
+    {% for i in data %}
+    
+  
+        <li >
+   
+          <a href="#" contenteditable>
+            <h2>{{i.dateOf}}</h2>
+            <p>{{i.textIs}} </p>
+      
+            <a href="/mynotes/delete/sticky/{{i.id}}/" class="btn btn-outline-danger"><i class="fa-solid fa-trash-can"></i> Delete</a>
+          </a>
+        </li>
+     
+
+    {% endfor %}
+</ul>
+   
+
+    {% else %}
+    <div class="container mt-3">
+
+       
+        <a href="/mynotes/crt/sticky/notes/" class="btn btn-outline-success"><i class="fa-solid fa-note-sticky"></i> Create Notes</a>
+
+    </div>
+    <hr class="text-info">
+
+    <div class="container mt-3 text-center">
+
+        <img src="{% static 'myNotes/img/sorry.jpg' %}" alt="" class="img-fluid text-center" width="170px"> 
+        <h3 class="text-center alert alert-info mt-2">No Notes Available</h3>
+
+    </div>
+    
+    {% endif %}
+
+
+
+</div>
+
+<div class="container mt-3">
+
+<div class="row">
+
+    <div class="col-sm-6">
+        <img src="{% static 'myNotes/img/tree.svg' %}" alt="" class="img-fluid text-center" width="400px"> 
+
+    </div>
+
+    <div class="col-sm-6">
+
+        <h4 class="text-dark">
+            <em>“Don't make <span class="text-success">trees</span> rare, keep them with care.” </em>
+        </h4>
+        <b class="text-dark">
+            
+                What is the meaning of save the tree and save the earth?
+Image result for save tree poster
+Trees help in maintaining the ecological balance of the earth by emission of Oxygen, absorption of Carbon dioxide. Most important benefits of trees are: It helps the environment to provide an enormous amount of oxygen and reduce the toxic carbon dioxide, nitrogen dioxide, sulphur dioxide and pollutants by absorbing.
+           
+        </b>
+    </div>
+</div>
+
+</div>
+
+
+<div class="container mt-3">
+
+<div class="row">
+
+    <div class="col-sm-6">
+        <img src="{% static 'myNotes/img/poor.jpg' %}" alt="" class="img-fluid text-center" width="400px"> 
+
+    </div>
+
+    <div class="col-sm-6">
+
+        <h4 class="text-dark">
+            <em>Poverty in India</em>
+        </h4>
+        <b class="text-dark">
+            Two-thirds of people in India live in poverty: 68.8% of the Indian population lives on less than $2 a day. Over 30% even have less than $1.25 per day available - they are considered extremely poor.
+         
+Poverty line estimation in India is based on the consumption expenditure and not on the income levels. Poverty is measured based on consumer expenditure surveys of the National Sample Survey Organisation. A poor household is defined as one with an expenditure level below a specific poverty line.
+           
+        </b>
+    </div>
+</div>
+
+</div>
+
+{% endblock content %}

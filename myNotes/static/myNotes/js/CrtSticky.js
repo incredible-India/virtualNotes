@@ -26,7 +26,25 @@ if (speech == true) {
 
 
 
+//for changing the color of notes
 
 
+try {
+    
+    let bgBody = document.getElementsByClassName('chColor');//body of card  
+ 
+
+    let colors = ['bg-info','bg-dark','bg-danger','bg-success','bg-primary','bg-light']
+
+    Array.from(bgBody).forEach((e,i)=>{
+    
+        e.classList.add(colors[i]);
+    })
+
+
+
+} catch (error) {
+    console.log(error);
+}
 
 

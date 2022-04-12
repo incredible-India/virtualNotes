@@ -6,11 +6,22 @@
 {% endblock title %}
 
 {% block content %}
-{% include 'core/nav.html' with o1='Home' o1l='/' o2='Profile' o2l='/mynotes/profile/' o3='My Notes' o4='logout' ac3='active' o4l='user/logout' uname=uname %}
+{% include 'core/nav.html' with o1='Home' o1l='/' o2='Profile' o2l='/mynotes/profile/' o3='My Notes' o4='logout' ac3='active' o4l='/user/logout' uname=uname o3l='/mynotes/all/saticky/' %}
 
 
 <div class="container mt-3">
+    {% if messages %}
 
+    {% for k in messages %} 
+    
+    <div class="alert alert-info alert-dismissible fade show mt-2 container" role="alert">
+        <strong>{{k}} </strong> 
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+    
+    
+    {% endfor %}
+    {% endif %}
     <div class="row">
 
         <div class="col-sm-4">
@@ -32,11 +43,59 @@
 
 
             <div class="container alert alert-warning mt-3">
-                voice Method will execute only in Google Chrome browser.
+                voice Method will execute in Google Chrome browser properly.
+            </div>
+
+
+            <div class="container">
+                <a href="{% url 'allStickyNotes' %}" class="link link-success mt-3">See All Notes</a>
             </div>
 
         </div>
     </div>
+</div>
+
+
+<div class="container">
+
+    <h4 class="alert alert-info mt-2">Recents Notes..</h4>
+  
+
+    {% if data %}
+  
+
+  <div class="container" style="display: flex; flex-direction: row; justify-content: space-between;">
+    {% for i in data %}
+    
+    
+    {% if  forloop.counter < 5 %}
+
+
+    
+
+    <div class="card text-white  mb-3 chColor" style="max-width: 18rem;">
+     <div class="card-header"> <i class="fa-solid fa-calendar"></i>  {{i.dateOf}}</div>
+     <div class="card-body">
+      
+       <p class="card-title"><i class="fa-solid fa-pen"></i> {{i.textIs}} </p>
+ 
+       <div class="footer">
+           <hr>
+           <a href="/mynotes/delete/sticky/{{i.id}}/" class="btn btn-outline-light delIt"> <i class="fa-solid fa-trash-can"></i> Delete Note</a>
+       </div>
+     </div>
+   </div>
+   {% endif %}
+    {% endfor %}
+
+  </div>
+    
+    {% else %}
+
+    <h4 class="text-dark text-center">No Notes Available</h4>
+
+    {% endif %}
+
 </div>
 
 {% endblock content %}

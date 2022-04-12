@@ -1,0 +1,51 @@
+{% extends 'core/base.html' %}
+{% load static %}
+{% block title %}
+<title>Speack Notes</title>
+{% endblock title %}
+
+
+
+{% block content %}
+
+{% include 'core/nav.html' with o1='Home' o1l='/' o2='Profile' o2l='/mynotes/profile/' o3='My Notes' ac3='active' o3l='/mynotes/crt/sticky/notes/' o4='logout' o4l='/user/logout/' uname=uname %}
+
+
+<div class="container text-center mt-2">
+   
+    <img src="{% static 'myNotes/img/mike.svg' %}" alt="music image" class="img-fluid mt-2" width='300px'>
+
+    <h2 class="text-center text-info mt-2">Use Headphones For Better Experience </h2>
+
+    <button class="btn btn-outline-info" onclick="history.go(-1)">Go Back</button>
+</div>
+
+
+<hr class="text-info">
+<div class="container mt-3">
+
+    <div class="row">
+
+        <div class="col-sm-6">
+
+            <img src="{% static 'myNotes/img/orp.jpg' %}" alt="orphan" class="img-fluid mt-2"  width='500px'>
+
+        </div>
+
+        <div class="col-sm-6">
+            <h1>
+                India Orphan Crisis in Numbers
+            </h1>
+
+            <b>
+                There are more than 30 million orphaned and abandoned children in India - that's almost 4% of the youth population. Since the Covid-19 pandemic struck in 2020, thousands more children have been orphaned, and the true figures are still unknown. It was thought that 1,000 children were left orphaned as a result of the pandemic in Uttar Pradesh alone, but the real figure could be much higher.
+
+Adoption laws in India are strict, leading to exceptionally low numbers of adoptions taking place. From March 2019 to March 2020, only 3,351 children were adopted. It's thought there are only 20,000 couples registered to adopt a child in India, but according to the Indian Society of Assisted Reproduction, there are almost 28 million couples who are trying to conceive but who are infertile. <a href="https://www.ilmuk.org/news/the-state-of-india-s-orphaned-children-crisis/#:~:text=India%20Orphan%20Crisis%20in%20Numbers,true%20figures%20are%20still%20unknown." target="_blank" class="link link-info">Know More</a>
+            </b>
+        </div>
+    </div>
+
+</div>
+{% endblock content %}
+
+
