@@ -4,4 +4,4 @@
 
 This site was built using [Django](https://pages.github.com/).
 
-![This is an image](https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.pinterest.com%2Fpin%2F581668108095603898%2F&psig=AOvVaw0X2Ct1RQ5oZ0-oPcClkarG&ust=1649884302864000&source=images&cd=vfe&ved=0CAoQjRxqFwoTCJCR7I-4j_cCFQAAAAAdAAAAABAI)
+![This is an image](https://i.pinimg.com/736x/ba/92/7f/ba927ff34cd961ce2c184d47e8ead9f6.jpg)
