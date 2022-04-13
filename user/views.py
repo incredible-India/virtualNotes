@@ -5,6 +5,8 @@ from django.db.models import Q
 from django.views import View
 from . import models
 from . import middleware 
+from myNotes.models import Categories
+import datetime
 #external module 
 
 # from cryptography.fernet import Fernet # encryption and decryption text
@@ -123,3 +125,48 @@ def logout(request):
     else: 
         return HttpResponseRedirect('/')
     
+
+
+
+
+#creating new category  form validation code ..
+@(middleware.verification)
+def newCategory(request):
+    if request.method == 'POST':
+        if request.isverified:
+            #getting data fromthe user side ...
+            
+            cname = request.POST.get('cname')
+            cimg = request.FILES.get('cimg',None)
+
+
+            #checking the category name in dbs thst already exist or not    
+
+            isExist = Categories.objects.filter(Q(name = cname) & Q(uid = models.User.objects.get(email=request.email)))
+
+            
+            
+            if cname == '' or len(cname) == 0:
+                messages.error(request,'Category name cannot be empty')
+                return HttpResponseRedirect('/mynotes/profile/')
+
+            
+            elif isExist.exists():
+                messages.error(request,'Category name already exists, please choose another name.')
+                return HttpResponseRedirect('/mynotes/profile/')
+
+            
+            
+
+            else:
+                email =  request.email 
+
+                Categories.objects.create(uid = models.User.objects.get(email=email), name = cname , cimg = cimg , dateOf = datetime.datetime.now()).save()
+
+
+            return HttpResponseRedirect('/mynotes/profile/')
+            
+        else:
+            return HttpResponseRedirect('/user/login/')
+    else:
+        return HttpResponse('<h1> Somethong went wrong please try again </h1>')

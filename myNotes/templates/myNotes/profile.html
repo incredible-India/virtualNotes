@@ -4,17 +4,23 @@
 <title>Profile - Virtual Notes</title>
 {% endblock title %}
 
+{% block link %}
+
+<link rel="stylesheet" href="{% static  'myNotes/css/profile.css' %}">
+<link rel="stylesheet" href="{% static  'myNotes/css/card.css' %}">
+
+{% endblock link %}
 
 {% block content %}
 
 
 {% include 'core/nav.html' with o1='Home' o1l='/' o2='Profile' o2l='/mynotes/profile/' o3='Sticky Notes' o4='logout' ac2='active' o4l='/user/logout/' uname=uname o3l='/mynotes/all/saticky/' %}
 
-<div class="container mt-3">
+<div class="container mt-3" >
 
     <div class="row">
 
-        <div class="col-sm-4 " style="background:#333; height:100vh;">
+        <div class="col-sm-4  text-center mt-2" style="background:#001f3f; height:100vh;">
 
             <h4 class="text-white text-center mt-2 bg-success">{{uname}} {{lname}}</h4>
             <hr class="text-info">
@@ -28,17 +34,127 @@
         </div>
 
 
-        <div class="col-sm-8">
+        <div class="col-sm-8 mt-2" >
 
             <a href="{% url 'stickyNotes' %}" class="btn btn-outline-secondary"><i class="fa-solid fa-note-sticky"></i> Create Sticky Notes</a>
-            <a href="" class="btn btn-outline-primary"><i class="fa-solid fa-book"></i> Create Categories</a>
+            <a href="#popup1" class="btn btn-outline-primary" style='cursor: pointer;' ><i class="fa-solid fa-book"></i> Create Categories</a>
 
             <hr class="text-info">
 
+            {% comment %} for the error message  {% endcomment %}
+            <div class="container mt-3">
+                {% if messages %}
+            
+                {% for k in messages %} 
+                
+                <div class="alert alert-danger alert-dismissible fade show mt-2 container" role="alert">
+                    <strong>{{k}} </strong> 
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+                
+                
+                {% endfor %}
+                {% endif %}
+              </div>
+ 
+     
+                {% comment %} make from here category profile  {% endcomment %}
+               
+
+                {% if cat %}
+                
+                <div class="row">
+                    {% for i in cat %}
+                    
+            
+                       <div class="col-sm-6 mt-2 text-center"> 
+                      {% comment %} you can add here title text-center {% endcomment %}
+                      {% comment %} <b class="text-center">{{i.name}}</b> {% endcomment %}
+                        <a href="">
+                           <div class="box" >
+                               <div class="card" >
+                               
+                                 <div class="imgBx">
+                                {% if i.cimg %}
+                                <img src="{{i.cimg.url}}" alt="images">
+         
+                                {% else %}
+         
+                                <img src="{% static 'myNotes/img/virtual.jpg' %}" alt="images">
+                                {% endif %}
+                               
+                                 </div>
+                                 <div class="details">
+                                     <h2>{{i.name}}<br><span>{{i.dateOf}}</span>
+                                         </h2>
+                                 </div>
+                              
+                               </div>
+                              
+                               </div>
+                        </a>
+                            
+                       </div>
+                      
+                
+                    
+                    
+                    {% endfor %}
+       
+                   </div> 
+
+                   {% else %}
+              
+                   <div class="container text-center mt-3">
+
+                    <img src="{% static 'myNotes/img/sorry.jpg' %}" alt="images" width="170px">
+                          
+                             <h3 class="alert alert-info mt-2">Sorry No Categories Available</h3>
+                 </div> 
+
+                
+                {% endif %}
+
         </div>
+
+     
 
     </div>
 
 </div>
+
+
+
+
+
+
+
+
+
+{% comment %} pop up for the category informations.. {% endcomment %}
+
+<div id="popup1" class="overlay">
+	<div class="popup">
+		<h2> <i class="fa-solid fa-book"></i> Category Information</h2>
+		<a class="close" href="#">&times;</a>
+		<div class="content">
+			
+            <form action="{% url 'newcategoris' %}" method="post" enctype="multipart/form-data">
+
+                {% csrf_token %}
+                <label for="cname">Category Name <span class="text-danger">*</span> </label>
+                <input type="text" name='cname' class="form-control" id="cname" placeholder="eg: Economics" required>
+            
+                <label for="cimg">Image</label>
+                <input type="File" name='cimg' class="form-control" id="cimg">
+
+                <input type="submit" value="Submit" class="btn btn-success mt-2">
+
+            </form>
+
+		</div>
+	</div>
+</div>
+
 
 {% endblock content %}

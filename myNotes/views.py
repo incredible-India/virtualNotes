@@ -6,7 +6,7 @@ from django.contrib import messages
 from django.db.models import Q
 from django.views import View
 from django.utils.decorators import method_decorator
-from .models import StickyNotes
+from .models import Categories, StickyNotes
 from user.models import User
 import datetime
 import os 
@@ -21,9 +21,19 @@ def index(request):
         userinfo =  models.User.objects.get(email=request.email)
 
         userimage = userinfo.image
+
+        #sending the categories informations 
+
+        categories = Categories.objects.filter(uid = userinfo) 
+        #containing info about the all the categories of user 
+
+        
+
+
         return render(request,'myNotes/profile.html',
         {'uname':userName,'email':request.email,'lname' : request.lname,
-         'userimage' : userimage})
+         'userimage' : userimage,
+         'cat':categories })
     else:
         return HttpResponseRedirect('/user/login/')
 
@@ -171,8 +181,7 @@ def speechNotesRouting(request):
 
         os.remove('stcknotes.txt')
 
-        
-
+    
             
         
         return render(request,'myNotes/textToSpeech.html',{
@@ -182,3 +191,6 @@ def speechNotesRouting(request):
     else:
         return HttpResponseRedirect('/user/login/')
  
+
+ #Sticky notes related all routing code done ...
+ #-----------------------------------------------#

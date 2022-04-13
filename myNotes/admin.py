@@ -6,3 +6,7 @@ from . import models
 class StickyNotesAdmin(admin.ModelAdmin):
     list_display = ['id','textIs','dateOf','userid']
 # Register your models here.
+#for the categories
+@admin.register(models.Categories)
+class CategoriesAdmin(admin.ModelAdmin):
+    list_display = ['id','name','dateOf','cimg','uid',]

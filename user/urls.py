@@ -7,5 +7,6 @@ urlpatterns = [
  
     path('newUser/',uv.newUser,name='newusers'),
     path('login/',uv.login,name='login'),
-    path('logout/',uv.logout,name='logiout')
+    path('logout/',uv.logout,name='logiout'),
+    path('check/validation/category/',uv.newCategory,name='newcategoris'),
 ]

@@ -13,4 +13,7 @@ urlpatterns = [
     path('all/delete/sticky/',mv.DeleteAllStickyNotes,name='allStickyNotesDeleted'),
     path('speech/snotes/',mv.speechNotesRouting,name='spksnts'),
 
+    #now the routing for the making notes  
+
+
 ]
