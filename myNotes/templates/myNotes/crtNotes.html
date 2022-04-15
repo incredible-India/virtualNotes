@@ -1,0 +1,95 @@
+{% extends 'core/base.html' %}
+
+{% load static %}
+
+{% block title %}
+
+    <title>Create Notes</title>
+
+{% endblock title %}
+
+{% block link %}
+
+<link rel="stylesheet" href="{% static  'myNotes/css/notes.css' %}">
+{% endblock link %}
+
+{% block content %}
+
+{% include 'core/nav.html' with o1='Home' o1l='/' o2='Profile' o2l='/mynotes/profile/' o3='My Sticky Notes' o3l='/mynotes/all/saticky/' o4='logout' o4l='/user/logout/' uname=uname %}
+
+
+<div class="container position-sticky fixed-top input-group" style="padding: 5px; background-color: lightblue;">
+
+<select name="type" id="" class="form textsize">
+
+    <option value="1">Heading</option>
+    <option value="2">Midium Heading</option>
+    <option value="3">Small Heading</option>
+    <option value="4">Paragraph</option>
+</select>
+<select name="type" id="" class="form texttype">
+    <option value="1">Normal</option>
+    <option value="2"> <em>Italic</em> </option>
+    <option value="3"> <b>Bold</b> </option>
+ 
+ 
+</select>
+    
+<input type="color" class=" form-control-color textcolor" id="exampleColorInput" value="#563d7c" title="Choose your color">
+
+<a href="" class="btn btn-danger"><i class="fa-solid fa-file-pdf"></i> Convert Pdf</a>
+<a href="" class="btn btn-primary"><i class="fa-solid fa-microphone"></i> Voice notes</a>
+<a href="" class="btn btn-success"><i class="fa-solid fa-floppy-disk"></i> Save Notes</a>
+
+<input type="text" class="form-control mb-3 mx-2 titleNotestxtBox" placeholder="Enter Title Of Notes">
+
+
+<h3 class="text-dark mx-2" title="{{title}}">
+    {{title|truncatechars:15|upper}}
+</h3>
+
+</div> 
+
+
+
+
+{% comment %} for the title.. {% endcomment %}
+
+<div class="container mt-2 maketitle text-center">
+
+
+</div>
+
+
+
+
+
+
+
+
+
+
+{% comment %} form data starts from here {% endcomment %}
+<div class="container mt-3">
+    <div class=" b1d1">
+      <textarea name="" id=""  class="form-control b1" placeholder="Hello World !"></textarea>
+        <span class="input-group-text bi1" id="basic-addon2"><input type="file" name="" id="" class="form-control" placeholder="Add image"></span>
+      </div>
+</div>
+
+<div class="container mt-2">
+  (  <kbd>Ctrl</kbd> + <kbd> Enter </kbd> )
+    <button class="btn btn-warning mx-2">Add</button>
+
+</div>
+
+{% endblock content %}
+
+
+
+
+{% block script %}
+
+<script src="{% static 'myNotes/js/notes.js' %}"></script>
+
+{% endblock script %}

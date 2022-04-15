@@ -15,5 +15,7 @@ urlpatterns = [
 
     #now the routing for the making notes  
 
+    path('start/crt/notes/<int:id>/vn/',mv.showCrtNotes,name='createNotes')
+
 
 ]

@@ -11,6 +11,7 @@ from user.models import User
 import datetime
 import os 
 from gtts import gTTS
+from playsound import playsound
 # Create your views here.
 @(middleware.verification)
 def index(request):
@@ -175,11 +176,13 @@ def speechNotesRouting(request):
 
         speechOBJ.save('speack.mp3')
 
-        os.system('speack.mp3')
+        playsound('speack.mp3')
 
-        os.remove('speack.mp3')
+        # os.system('speack.mp3')
 
-        os.remove('stcknotes.txt')
+        # os.remove('speack.mp3')
+
+        # os.remove('stcknotes.txt')
 
     
             
@@ -194,3 +197,44 @@ def speechNotesRouting(request):
 
  #Sticky notes related all routing code done ...
  #-----------------------------------------------#
+
+
+#now routing for the creating the notes fornote of deifferent categories 
+
+def showCrtNotes(request,id):
+
+    isAuth =  request.session.get('userAuth',None)
+    #checking the authentication
+    if isAuth != None:
+
+        isEmail =  User.objects.filter(email = isAuth)
+
+        if isEmail.exists():
+
+            try:
+                titleofNotes = Categories.objects.get(id= id)
+
+                Title = titleofNotes.name
+
+    
+            
+            except Exception as FindingError:
+                return HttpResponse('<h1> Something went wrong </h1>')
+
+            return render(request, 'myNotes/crtNotes.html',{
+
+            'uname':'Himanshu'
+
+            ,'title':Title
+        })
+        else:
+
+            return HttpResponseRedirect('/user/login')
+
+
+
+    else:
+        return HttpResponseRedirect('/user/login')
+        
+    
+   
