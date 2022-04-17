@@ -78,71 +78,85 @@ colorOftext.onchange = (e)=>{
 let textBoxes = document.getElementsByClassName('txtbx');
 
 
-Array.from(textBoxes).forEach((e,i)=>{
 
+//main code for display here is inside this .. 
+setInterval(() => {
+    Array.from(textBoxes).forEach((e,i)=>{
+
+   
+        e.addEventListener('keyup', function(event){
+    //isme hum ctrl aur enter ka func likh sakte hai
     
-    e.addEventListener('keyup', function(event){
-//isme hum ctrl aur enter ka func likh sakte hai
-
-    var kindOfElement  ;
-
- if (st == 1)
- {
-     kindOfElement = 'h1'
- }
- else if (st == 2)
- {
-     kindOfElement = 'h3'
- }else if(st == 3)
-{
-    kindOfElement = 'h4'
-}
-else if(st == 4)
-{
-    kindOfElement = 'p'
-}else
-{
-    kindOfElement = 'section'
-}
-
-
-
-let Tobe = document.getElementsByClassName(`d${e.classList[1]}`)[0]
-
-Tobe.innerHTML = `<${kindOfElement} class='d${e.classList[1]}t1' > ${e.value}  </${kindOfElement}>`
+        var kindOfElement  ;
+    
+     if (st == 1)
+     {
+         kindOfElement = 'h1'
+     }
+     else if (st == 2)
+     {
+         kindOfElement = 'h3'
+     }else if(st == 3)
+    {
+        kindOfElement = 'h4'
+    }
+    else if(st == 4)
+    {
+        kindOfElement = 'p'
+    }else if(st == 5)
+    {
+        kindOfElement = 'li'
+    }   
+    else
+    {
+        kindOfElement = 'section'
+    }
+    
+    
+    
+    let Tobe = document.getElementsByClassName(`d${e.classList[1]}`)[0]
+    
+    Tobe.innerHTML = `<${kindOfElement} class='d${e.classList[1]}t1' > ${e.value}  </${kindOfElement}>`
+     
+    
+    //now style through js style
+    //all the style codeing can be done from here if any..
+    let mkStyle = document.getElementsByClassName(`d${e.classList[1]}t1`)[0]
  
 
-//now style through js style
-//all the style codeing can be done from here if any..
-let mkStyle = document.getElementsByClassName(`d${e.classList[1]}t1`)[0]
-//type bold italic or normal
-if (tt == 3)
-{
-
-        mkStyle.style.fontWeight = '600';
-
-}else if (tt == 2)
-{
-
-    mkStyle.style.fontStyle = 'italic';
-
-}else
-{
-    mkStyle.style.fontWeight = '200';
-
-}
+    let bold = document.getElementsByClassName('mbold')[0].checked
+    let italic = document.getElementsByClassName('mitalic')[0].checked
+    let underline = document.getElementsByClassName('munderline')[0].checked
+    
+    
 
 
-//color change
-mkStyle.style.color = ct;
+    //color change
+    mkStyle.style.color = ct;
+    mkStyle.style.fontFamily = tt;
+    //making bold
+    if(bold)
+    {
+        mkStyle.style.fontWeight = '600'
 
+    }
 
+    if(italic)
+    {
+        mkStyle.style.fontStyle = 'italic'
+    }
 
-})
-})
+    if(underline)
+    {
+       mkStyle.style.textDecoration =  'underline'
 
-
-
+    }
+    
+    
+    })
+    })
+    
+}, 1000);
 //now clicking on the add button.. 
 
 
@@ -151,10 +165,27 @@ let insideInsert = document.getElementsByClassName('aldtatoinsert')[0];
 var count =2;
 addBtn.addEventListener('click',(event)=>{
 
-  
     AddElements(count++);
 })
 
+
+//key event ctrl + enter 
+let  keysPressed = {};
+
+document.addEventListener('keydown', (event) => {
+    keysPressed[event.key] = true;
+ 
+    if (keysPressed['Control'] && event.key == 'Enter') {
+        AddElements(count++);
+    }
+ });
+ 
+ document.addEventListener('keyup', (event) => {
+    delete keysPressed[event.key];
+ });
+
+
+//this function simply will add innerHtml
 function AddElements(count){{
 
     let newDIV = document.createElement('div');
@@ -168,8 +199,14 @@ function AddElements(count){{
   
     </div>
 
+
+    <div class="container insertdata dbi${count}">
+  
+    </div>
+
+
     <textarea name=""   class="form-control b${count} txtbx" placeholder="Hello World !"></textarea>
-      <span class="input-group-text bi1" id="basic-addon2"><input type="file" name="" id="" class="form-control" placeholder="Add image"></span>
+      <span class="input-group-text "  id="basic-addon2"><input type="file" name="" id="" class="form-control bi1 i${count}" placeholder="Add image"></span>
     </div>
     
     
@@ -179,11 +216,55 @@ function AddElements(count){{
 }}
 
 
-Array.from(document.getElementsByClassName('txtbx')).forEach(e=>{
 
-    e.addEventListener('click',()=>{
 
-        console.log('isko chhua ',e.className);
+//for the image upload function
 
+
+    
+let image_upload = document.getElementsByClassName('bi1');
+
+
+ 
+   
+
+setInterval(() => {
+    Array.from(image_upload).forEach(function(event,index){
+
+        event.addEventListener('change',(e)=>{
+    
+            var imageSRC = URL.createObjectURL(e.target.files[0]);
+
+
+            
+       
+      
+          let insidethisAppend = document.getElementsByClassName(`db${event.classList[2]}`)[0]
+
+         
+
+          insidethisAppend.innerHTML = `<img class ='img-fluid pdfimgs' src='${imageSRC}' width='340px' height='230px'> `
+            
+    
+        })
+    
+
+    
     })
-   })
+    
+}, 1000);
+
+
+
+
+
+
+//selection particular
+
+document.body.onselectstart = (e)=>{
+    let selection = document.getSelection();
+
+
+   
+    location.href = '#popup1'
+}

@@ -18,7 +18,7 @@
 {% include 'core/nav.html' with o1='Home' o1l='/' o2='Profile' o2l='/mynotes/profile/' o3='My Sticky Notes' o3l='/mynotes/all/saticky/' o4='logout' o4l='/user/logout/' uname=uname %}
 
 
-<div class="container position-sticky fixed-top input-group" style="padding: 5px; background-color: lightblue;">
+<div class=" position-sticky fixed-top input-group" style="padding: 5px; background-color: lightblue;">
 
 <select name="type" id="" class="form textsize">
 
@@ -26,22 +26,41 @@
     <option value="2">Midium Heading</option>
     <option value="3">Small Heading</option>
     <option value="4">Paragraph</option>
+    <option value="5">List</option>
 </select>
 <select name="type" id="" class="form texttype">
-    <option value="1">Normal</option>
-    <option value="2"> <em>Italic</em> </option>
-    <option value="3"> <b>Bold</b> </option>
+    <option value="Arial">Arial</option>
+    <option value="Verdana"> <em>Verdana</em> </option>
+    <option value="Helvetica"> <b>Helvetica</b> </option>
+    <option value="Tahoma">Tahoma</option>
+    <option value="Trebuchet MS">Trebuchet MS</option>
+    <option value="Times New Roman">Times New Roman</option>
+    <option value="Georgia">Georgia</option>
+    <option value="Garamond">Garamond</option>
+    <option value="Brush Script MT">Brush Script MT</option>
+    <option value="Cursive">Cursive</option>
  
  
 </select>
     
-<input type="color" class=" form-control-color textcolor" id="exampleColorInput" value="#563d7c" title="Choose your color">
+
+
+<input type="color" class=" form-control-color textcolor" id="exampleColorInput" value="#000000" title="Choose your color">
+
+<input type="checkbox" class="btn-check mbold" id="btn-check-outlined" autocomplete="off">
+<label class="btn btn-outline-dark" for="btn-check-outlined" title='bold'><i class="fa-solid fa-bold"></i></label><br>
+
+<input type="checkbox" class="btn-check mitalic" id=" f" autocomplete="off">
+<label class="btn btn-outline-secondary" for=" f" title='Italic'><i class="fa-solid fa-italic"></i></label><br>
+
+<input type="checkbox" class="btn-check munderline" id=" u" autocomplete="off">
+<label class="btn btn-outline-primary" for=" u" title='underline'><i class="fa-solid fa-underline"></i></label><br>
 
 <a href="" class="btn btn-danger"><i class="fa-solid fa-file-pdf"></i> Convert Pdf</a>
 <a href="" class="btn btn-primary"><i class="fa-solid fa-microphone"></i> Voice notes</a>
 <a href="" class="btn btn-success"><i class="fa-solid fa-floppy-disk"></i> Save Notes</a>
 
-<input type="text" class="form-control mb-3 mx-2 titleNotestxtBox" placeholder="Enter Title Of Notes">
+<input type="text" class="form-control mb-3 mx-2 titleNotestxtBox" placeholder="Enter Title Of Notes" autofocus>
 
 
 <h3 class="text-dark mx-2" title="{{title}}">
@@ -71,15 +90,19 @@
 
 {% comment %} form data starts from here {% endcomment %}
 <div class="container mt-3 aldtatoinsert">
-  
+
     <div class="input-group container">
 
       <div class="container insertdata db1">
     
       </div>
 
-      <textarea name="" id="b1"  class="form-control b1 txtbx" placeholder="Hello World !"></textarea>
-        <span class="input-group-text bi1" id="basic-addon2"><input type="file" name="" id="" class="form-control" placeholder="Add image"></span>
+      <div class="container insertdata dbi1">
+  
+      </div>
+
+      <textarea name=""   class="form-control b1 txtbx" placeholder="Hello World !" ></textarea>
+        <span class="input-group-text " id="basic-addon2"><input type="file" name="" id="" class="form-control bi1 i1" placeholder="Add image" ></span>
       </div>
 </div>
 
@@ -92,6 +115,38 @@
     <button class="btn btn-warning mx-2 addbtn my-4">Add</button>
 
 </div>
+
+
+
+
+
+
+
+
+{% comment %} <a href="#popup1" class="btn btn-outline-primary" style='cursor: pointer;' ><i class="fa-solid fa-book"></i> Create Categories</a> {% endcomment %}
+
+{% comment %} <div id="popup1" class="overlay">
+	<div class="popup">
+		<h2> <i class="fa-solid fa-book"></i> Category Information</h2>
+		<a class="close" href="#">&times;</a>
+		<div class="content">
+			
+            <form action="{% url 'newcategoris' %}" method="post" enctype="multipart/form-data">
+
+                {% csrf_token %}
+                <label for="cname">Category Name <span class="text-danger">*</span> </label>
+                <input type="text" name='cname' class="form-control" id="cname" placeholder="eg: Economics" required>
+            
+                <label for="cimg">Image</label>
+                <input type="File" name='cimg' class="form-control" id="cimg">
+
+                <input type="submit" value="Submit" class="btn btn-success mt-2">
+
+            </form>
+
+		</div>
+	</div>
+</div> {% endcomment %}
 
 
 {% endblock content %}
